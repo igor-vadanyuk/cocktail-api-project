@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Hour</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+<body>
+    <h1> Happy Hour</h1>
+    <h2> Random cocktail generator</h2>
+    <form action="/submit" method="POST">
+      <button type="submit">Find a Drink</button>
+    </form>
+
+    <% if(locals.recipe){ %>
+      <p>
+        <%= recipe.strDrink %>
+      </p>
+
+        <h3>Ingredients:</h3>
+        <div class="ingredients-wrapper">
+        <ol>
+          <% for (let i = 1; i <= 15; i++){ %>
+            <% const ingredient = recipe["strIngredient" + i]; %>
+            <% const measure = recipe["strMeasure" + i]; %>
+            <% console.log(measure) %>
+            <% if(ingredient){ %>
+              <li>
+                <%=measure%> <%=ingredient%>
+                </li>
+            <% } %>
+          <%}%>
+        </ol>
+      </div>
+
+        <h3>Instructions: </h3>
+
+      <p>
+        <%= recipe.strInstructions %>
+      </p>
+
+      <img src="<%= recipe.strDrinkThumb %>" alt="drink image" width="300">
+
+    <% } %>
+</body>
+</html>
